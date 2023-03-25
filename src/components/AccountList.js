@@ -20,6 +20,7 @@ const AccountList = () => {
         <tr>
           <th>ID</th>
           <th>Owner</th>
+          <th>Owner name</th>
           <th>Cash</th>
           <th>Credit</th>
         </tr>

@@ -11,6 +11,13 @@ export async function getAllAccounts(callBackFn) {
   } catch (error) {}
 }
 
+export async function getUser(id, callBackFn) {
+  try {
+    const response = await api.get(`/users/${id}`);
+    callBackFn(response.data.data);
+  } catch (error) {}
+}
+
 export async function depositCash(id, amount) {
   try {
     await api.put(`/accounts/${id}`, { deposit: amount });

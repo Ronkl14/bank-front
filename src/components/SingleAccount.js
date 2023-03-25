@@ -1,6 +1,7 @@
 import React from "react";
 import ActionButton from "./ActionButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getUser } from "../api/api";
 
 const SingleAccount = ({
   account,
@@ -9,6 +10,15 @@ const SingleAccount = ({
   setButtonDisabled,
   buttonsDisabled,
 }) => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    getUser(account.owner, setUser);
+  }, []);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   function depositCash() {
     setShowModal(true);
     setButtonDisabled(true);
@@ -60,6 +70,7 @@ const SingleAccount = ({
     <tr>
       <td>{account.id}</td>
       <td>{account.owner}</td>
+      {user[0] ? <td>{user[0].name}</td> : ""}
       <td>{account.cash}</td>
       <td>{account.credit}</td>
       <ActionButton
