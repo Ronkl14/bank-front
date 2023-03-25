@@ -22,3 +22,15 @@ export async function withdrawCash(id, amount) {
     await api.put(`/accounts/${id}`, { withdraw: amount });
   } catch (error) {}
 }
+
+export async function updateCredit(id, credit) {
+  try {
+    await api.put(`/accounts/${id}`, { credit: credit });
+  } catch (error) {}
+}
+
+export async function transferCash(id, to, amount) {
+  try {
+    await api.put(`/accounts/transfer/${id}`, { to: to, amount: amount });
+  } catch (error) {}
+}

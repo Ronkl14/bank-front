@@ -1,5 +1,11 @@
 import React from "react";
-import { depositCash, getAllAccounts, withdrawCash } from "../api/api";
+import {
+  depositCash,
+  getAllAccounts,
+  withdrawCash,
+  updateCredit,
+  transferCash,
+} from "../api/api";
 import { useState, useEffect } from "react";
 
 const Modal = ({
@@ -27,10 +33,22 @@ const Modal = ({
       case "deposit":
         await depositCash(modalProps.account.id, values.amount);
         getAllAccounts(setAccounts);
+        closeModal();
         return;
       case "withdraw":
         await withdrawCash(modalProps.account.id, values.amount);
         getAllAccounts(setAccounts);
+        closeModal();
+        return;
+      case "credit":
+        await updateCredit(modalProps.account.id, values.credit);
+        getAllAccounts(setAccounts);
+        closeModal();
+        return;
+      case "transfer":
+        await transferCash(modalProps.account.id, values.to, values.amount);
+        getAllAccounts(setAccounts);
+        closeModal();
         return;
     }
   }
