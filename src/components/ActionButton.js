@@ -1,9 +1,11 @@
 import React from "react";
 
-const Button = ({ action }) => {
+const Button = ({ action, clickHandler, buttonsDisabled }) => {
   return (
     <td>
-      <button>{action}</button>
+      <button onClick={clickHandler} disabled={buttonsDisabled}>
+        {action}
+      </button>
     </td>
   );
 };
