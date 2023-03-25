@@ -8,7 +8,7 @@ import {
   createAccount,
   createUser,
 } from "../api/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Modal = ({
   modalProps,
