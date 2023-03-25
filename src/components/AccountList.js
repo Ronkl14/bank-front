@@ -14,6 +14,38 @@ const AccountList = () => {
     getAllAccounts(setAccounts);
   }, []);
 
+  function toggleModal() {
+    setShowModal(true);
+    setButtonDisabled(true);
+  }
+
+  function newUser() {
+    toggleModal();
+    setModalProps({
+      action: "user",
+      title: "Create new user",
+      inputs: [
+        { type: "text", name: "name" },
+        { type: "text", name: "id" },
+        { type: "number", name: "cash" },
+        { type: "number", name: "credit" },
+      ],
+    });
+  }
+
+  function newAccount() {
+    toggleModal();
+    setModalProps({
+      action: "account",
+      title: "Create new account",
+      inputs: [
+        { type: "text", name: "id" },
+        { type: "number", name: "cash" },
+        { type: "number", name: "credit" },
+      ],
+    });
+  }
+
   return (
     <>
       <table>
@@ -37,6 +69,8 @@ const AccountList = () => {
               />
             ))}
       </table>
+      <button onClick={newUser}>Create New User</button>
+      <button onClick={newAccount}>Create New Account</button>
       <div>
         {showModal ? (
           <Modal

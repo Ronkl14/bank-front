@@ -5,6 +5,8 @@ import {
   withdrawCash,
   updateCredit,
   transferCash,
+  createAccount,
+  createUser,
 } from "../api/api";
 import { useState, useEffect } from "react";
 
@@ -14,7 +16,13 @@ const Modal = ({
   setButtonDisabled,
   setAccounts,
 }) => {
-  const [values, setValues] = useState({ amount: null, credit: null, to: "" });
+  const [values, setValues] = useState({
+    amount: null,
+    credit: null,
+    to: "",
+    name: "",
+    id: "",
+  });
 
   function changeHandler(e) {
     const name = e.target.name;
@@ -26,28 +34,34 @@ const Modal = ({
   function closeModal() {
     setShowModal(false);
     setButtonDisabled(false);
+    getAllAccounts(setAccounts);
   }
 
   async function actionHandler() {
     switch (modalProps.action) {
       case "deposit":
         await depositCash(modalProps.account.id, values.amount);
-        getAllAccounts(setAccounts);
         closeModal();
         return;
       case "withdraw":
         await withdrawCash(modalProps.account.id, values.amount);
-        getAllAccounts(setAccounts);
         closeModal();
         return;
       case "credit":
         await updateCredit(modalProps.account.id, values.credit);
-        getAllAccounts(setAccounts);
         closeModal();
         return;
       case "transfer":
         await transferCash(modalProps.account.id, values.to, values.amount);
-        getAllAccounts(setAccounts);
+        closeModal();
+        return;
+      case "user":
+        await createUser(values.name, values.id);
+        await createAccount(values.id, values.cash, values.credit);
+        closeModal();
+        return;
+      case "account":
+        await createAccount(values.id, values.cash, values.credit);
         closeModal();
         return;
     }

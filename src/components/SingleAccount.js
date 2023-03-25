@@ -15,13 +15,13 @@ const SingleAccount = ({
     getUser(account.owner, setUser);
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
-  function depositCash() {
+  function showModal() {
     setShowModal(true);
     setButtonDisabled(true);
+  }
+
+  function depositCash() {
+    showModal();
     setModalProps({
       account: account,
       action: "deposit",
@@ -31,8 +31,7 @@ const SingleAccount = ({
   }
 
   function withdrawCash() {
-    setShowModal(true);
-    setButtonDisabled(true);
+    showModal();
     setModalProps({
       account: account,
       action: "withdraw",
@@ -42,8 +41,7 @@ const SingleAccount = ({
   }
 
   function updateCredit() {
-    setShowModal(true);
-    setButtonDisabled(true);
+    showModal();
     setModalProps({
       account: account,
       action: "credit",
@@ -53,8 +51,7 @@ const SingleAccount = ({
   }
 
   function transferCash() {
-    setShowModal(true);
-    setButtonDisabled(true);
+    showModal();
     setModalProps({
       account: account,
       action: "transfer",

@@ -41,3 +41,15 @@ export async function transferCash(id, to, amount) {
     await api.put(`/accounts/transfer/${id}`, { to: to, amount: amount });
   } catch (error) {}
 }
+
+export async function createUser(name, userID) {
+  try {
+    await api.post("/users", { name: name, userID: userID });
+  } catch (error) {}
+}
+
+export async function createAccount(id, cash, credit) {
+  try {
+    await api.post("/accounts", { owner: id, cash: cash, credit: credit });
+  } catch (error) {}
+}
