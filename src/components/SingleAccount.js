@@ -24,6 +24,7 @@ const SingleAccount = ({
     setShowModal(true);
     setButtonDisabled(true);
     setModalProps({
+      account: account,
       action: "withdraw",
       title: "Withdraw cash",
       inputs: [{ type: "number", name: "amount" }],
@@ -34,6 +35,7 @@ const SingleAccount = ({
     setShowModal(true);
     setButtonDisabled(true);
     setModalProps({
+      account: account,
       action: "credit",
       title: "Update credit",
       inputs: [{ type: "number", name: "credit" }],
@@ -44,6 +46,7 @@ const SingleAccount = ({
     setShowModal(true);
     setButtonDisabled(true);
     setModalProps({
+      account: account,
       action: "transfer",
       title: "Transfer cash",
       inputs: [

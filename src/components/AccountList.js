@@ -12,7 +12,6 @@ const AccountList = () => {
 
   useEffect(() => {
     getAllAccounts(setAccounts);
-    console.log(accounts);
   }, []);
 
   return (
@@ -40,6 +39,7 @@ const AccountList = () => {
       <div>
         {showModal ? (
           <Modal
+            setAccounts={setAccounts}
             modalProps={modalProps}
             setShowModal={setShowModal}
             setButtonDisabled={setButtonDisabled}

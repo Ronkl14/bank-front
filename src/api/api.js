@@ -16,3 +16,9 @@ export async function depositCash(id, amount) {
     await api.put(`/accounts/${id}`, { deposit: amount });
   } catch (error) {}
 }
+
+export async function withdrawCash(id, amount) {
+  try {
+    await api.put(`/accounts/${id}`, { withdraw: amount });
+  } catch (error) {}
+}
