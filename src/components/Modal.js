@@ -1,8 +1,13 @@
 import React from "react";
-import { depositCash } from "../api/api";
+import { depositCash, getAllAccounts, withdrawCash } from "../api/api";
 import { useState, useEffect } from "react";
 
-const Modal = ({ modalProps, setShowModal, setButtonDisabled }) => {
+const Modal = ({
+  modalProps,
+  setShowModal,
+  setButtonDisabled,
+  setAccounts,
+}) => {
   const [values, setValues] = useState({ amount: null, credit: null, to: "" });
 
   function changeHandler(e) {
@@ -17,11 +22,16 @@ const Modal = ({ modalProps, setShowModal, setButtonDisabled }) => {
     setButtonDisabled(false);
   }
 
-  function actionHandler() {
+  async function actionHandler() {
     switch (modalProps.action) {
       case "deposit":
-        console.log(modalProps.account.id, values.amount);
-        depositCash(modalProps.account.id, values.amount);
+        await depositCash(modalProps.account.id, values.amount);
+        getAllAccounts(setAccounts);
+        return;
+      case "withdraw":
+        await withdrawCash(modalProps.account.id, values.amount);
+        getAllAccounts(setAccounts);
+        return;
     }
   }
 
